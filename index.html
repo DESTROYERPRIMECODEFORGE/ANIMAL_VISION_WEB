@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="ANIMAL VISION: inteligencia artificial para reconocer gatos, perros y loros mediante imágenes.">
+
+    <title>ANIMAL VISION | Reconocimiento Animal</title>
+
+    <!-- ESTILOS -->
+    <link rel="stylesheet" href="CSS/style.css">
+
+    <!-- TENSORFLOW.JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.17.0/dist/tf.min.js"></script>
+
+    <!-- GSAP ANIMATIONS -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+
+    <!-- JAVASCRIPT PRINCIPAL -->
+    <script src="JS/main.js" defer></script>
+</head>
+
+<body>
+    <!-- CONTENIDO PRINCIPAL -->
+    <main id="app">
+
+        <!-- ENCABEZADO -->
+        <header class="hero-content">
+
+            <h1 id="mainTitle">ANIMAL VISION</h1>
+
+            <p id="mainDescription">
+                Reconocimiento inteligente de animales mediante
+                inteligencia artificial.
+            </p>
+
+        </header>
+
+        <!-- SECCIÓN DE RECONOCIMIENTO -->
+        <section class="upload-section" id="uploadSection">
+
+            <h2>Analiza una imagen</h2>
+
+            <label for="imageInput" class="upload-button">
+                SELECCIONAR IMAGEN
+            </label>
+
+            <input
+                type="file"
+                id="imageInput"
+                accept="image/*"
+                hidden
+            >
+
+            <!-- VISTA PREVIA -->
+            <div class="preview-container">
+
+                <img
+                    id="imagePreview"
+                    alt="Vista previa del animal"
+                    hidden
+                >
+
+                <p id="previewMessage">
+                    Aquí aparecerá tu imagen
+                </p>
+
+            </div>
+
+            <!-- BOTÓN DE ANÁLISIS -->
+            <button id="analyzeButton" disabled>
+                ANALIZAR ANIMAL
+            </button>
+
+            <!-- RESULTADO -->
+            <div id="resultContainer" hidden>
+
+                <div id="animalIcon"></div>
+
+                <h2>Resultado del análisis</h2>
+
+                <p id="prediction"></p>
+
+                <p id="confidence"></p>
+
+                <div class="confidence-bar">
+
+                    <div id="confidenceProgress"></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+</html>
