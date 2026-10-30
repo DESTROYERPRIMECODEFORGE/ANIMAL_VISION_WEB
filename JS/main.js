@@ -149,19 +149,33 @@ async function analizarAnimal() {
 
         resultContainer.hidden = false;
 
+        // ========================================
+        // ANIMACIÓN DE TARJETA DE RESULTADOS
+        // ========================================
+
         // REINICIAR ANIMACIONES
-        gsap.set(
-            [resultContainer, animalIcon, confidenceProgress],
-            { clearProps: "all" }
-        );
+        gsap.set(resultContainer, {
+            opacity: 0,
+            y: 35,
+            scale: 0.97
+        });
 
-        gsap.set(resultContainer, { opacity: 0, y: 35, scale: 0.96 });
-        gsap.set(animalIcon, { opacity: 0, scale: 0.5, rotation: -15 });
-        gsap.set(confidenceProgress, { width: "0%" });
+        gsap.set(animalIcon, {
+            opacity: 0,
+            scale: 0.5,
+            rotation: -15
+        });
 
-        // ANIMAR RESULTADO
+        gsap.set(confidenceProgress, {
+            width: "0%",
+            backgroundColor: "var(--primary)"
+        });
+
+        // SECUENCIA DE ANIMACIÓN
         const resultTimeline = gsap.timeline({
-            defaults: { ease: "power3.out" }
+            defaults: {
+                ease: "power3.out"
+            }
         });
 
         resultTimeline
@@ -169,21 +183,36 @@ async function analizarAnimal() {
                 opacity: 1,
                 y: 0,
                 scale: 1,
-                duration: 0.65
+                duration: 0.7
             })
+
             .to(animalIcon, {
                 opacity: 1,
                 scale: 1,
                 rotation: 0,
-                duration: 0.6,
+                duration: 0.7,
                 ease: "back.out(1.7)"
-            }, "-=0.25")
+            }, "-=0.35")
+
             .to(confidenceProgress, {
                 width: confianza + "%",
                 duration: 1.2,
                 ease: "power2.out"
-            }, "-=0.15");
-
+            }, "-=0.2");
+        // CAMBIO CONSTANTE ENTRE PRIMARY Y SECONDARY
+        gsap.fromTo(
+            confidenceProgress,
+            {
+                backgroundColor: "#36d6c5"
+            },
+            {
+                backgroundColor: "#7c8cff",
+                duration: 2,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            }
+        );
         // Liberar memoria
         imagenTensor.dispose();
         imagenRedimensionada.dispose();

@@ -54,7 +54,6 @@
                 hidden
             >
 
-            <!-- VISTA PREVIA -->
             <div class="preview-container">
 
                 <img
@@ -69,15 +68,18 @@
 
             </div>
 
-            <!-- BOTÓN DE ANÁLISIS -->
             <button id="analyzeButton" disabled>
                 ANALIZAR ANIMAL
             </button>
 
-            <!-- RESULTADO -->
-            <div id="resultContainer" hidden>
+        </section>
 
-                <div id="animalIcon"></div>
+        <!-- TARJETA DE RESULTADOS -->
+        <div id="resultContainer" hidden>
+
+            <div id="animalIcon"></div>
+
+            <div class="result-content">
 
                 <h2>Resultado del análisis</h2>
 
@@ -86,16 +88,11 @@
                 <p id="confidence"></p>
 
                 <div class="confidence-bar">
-
                     <div id="confidenceProgress"></div>
-
                 </div>
 
             </div>
-
-        </section>
-
+        </div>       
     </main>
-
 </body>
 </html>
