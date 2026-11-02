@@ -46,6 +46,24 @@ async function cargarModelo() {
 
 }
 
+async function calentarModelo() {
+
+    if (!animalVisionModel) return;
+
+    console.log("Calentando modelo...");
+
+    const tensorPrueba = tf.zeros([1, 224, 224, 3]);
+
+    const resultado = animalVisionModel.execute(tensorPrueba);
+
+    await resultado.data();
+
+    tensorPrueba.dispose();
+    resultado.dispose();
+
+    console.log("¡Modelo preparado!");
+}
+
 // ========================================
 // SELECCIONAR IMAGEN
 // ========================================
@@ -382,7 +400,6 @@ function iniciarAnimaciones() {
             {
                 y: 0,
                 opacity: 1,
-                scale: 4,
                 duration: 0.8,
                 stagger: 0.2,
                 ease: "back.out(1.7)",

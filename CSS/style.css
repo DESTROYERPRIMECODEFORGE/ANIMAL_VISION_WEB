@@ -2,6 +2,13 @@
    ANIMAL VISION
    ESTILOS GENERALES
 ======================================== */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
+
+/* TIPOGRAFÍA GENERAL */
+* {
+    font-family: 'Fredoka', sans-serif;
+    
+}
 
 * {
     margin: 0;
@@ -28,9 +35,18 @@ html {
 
 body {
     min-height: 100vh;
-    background: var(--background);
-    color: var(--text);
-    font-family: Arial, sans-serif;
+
+    background-image:
+        linear-gradient(
+            rgba(8, 13, 24, 0.8),
+            rgba(8, 13, 24, 0.8)
+        ),
+        url("../Assets/catdog.svg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 /* CONTENEDOR PRINCIPAL */
@@ -86,14 +102,16 @@ h1 {
 /* ICONOS */
 
 .animal-icon {
-    width: 40px;
-    height: 40px;
+    width: 85px;
+    height: 85px;
+
+    font-size: 75px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--primary);
 
-    transform: scale(3.75);
+    color: var(--primary);
 
     transition:
         color 0.3s ease,
@@ -102,7 +120,7 @@ h1 {
 
 .animal-icon:hover {
     color: var(--secondary);
-    transform: translateY(-5px) scale(3.95);
+    transform: translateY(-5px);
 }
 
 .supported-animals {
@@ -124,8 +142,10 @@ h1 {
     }
 
     .animal-icon {
-        width: 40px;
-        height: 40px;
+        width: 65px;
+        height: 65px;
+
+        font-size: 55px;
     }
 
 }
@@ -196,7 +216,7 @@ h1 {
     min-height: 250px;
 
     background: #080d18;
-    border: 1px dashed #40516c;
+    border: 5px dashed #40516c;
     border-radius: 12px;
 
     display: flex;
