@@ -278,6 +278,7 @@ async function analizarAnimal() {
 
 }
 
+
 // ========================================
 // CONECTAR BOTÓN DE ANÁLISIS
 // ========================================
@@ -290,16 +291,26 @@ analyzeButton.addEventListener("click", analizarAnimal);
 
 function iniciarAnimaciones() {
 
-    const timeline = gsap.timeline({
+    gsap.set(
+        "#mainTitle, #mainDescription, #supportedAnimals, #uploadSection",
+        {
+            opacity: 0
+        }
+    );
 
+    gsap.set(".animal-icon", {
+        opacity: 0
+    });
+
+    const timeline = gsap.timeline({
         defaults: {
             ease: "power3.out"
         }
-
     });
 
     timeline
 
+        // TÍTULO PRINCIPAL
         .fromTo(
 
             "#mainTitle",
@@ -319,6 +330,7 @@ function iniciarAnimaciones() {
 
         )
 
+        // DESCRIPCIÓN
         .fromTo(
 
             "#mainDescription",
@@ -338,6 +350,49 @@ function iniciarAnimaciones() {
 
         )
 
+        // CONTENEDOR DE ICONOS
+        .fromTo(
+
+            "#supportedAnimals",
+
+            {
+                opacity: 0
+            },
+
+            {
+                opacity: 1,
+                duration: 0.5
+            },
+
+            "-=0.2"
+
+        )
+
+        // ICONOS ANIMADOS UNO POR UNO
+        .fromTo(
+
+            ".animal-icon",
+
+            {
+                y: 35,
+                opacity: 0,
+                scale: 1
+            },
+
+            {
+                y: 0,
+                opacity: 1,
+                scale: 4,
+                duration: 0.8,
+                stagger: 0.2,
+                ease: "back.out(1.7)",
+            },
+
+            "-=0.3"
+
+        )
+
+        // SECCIÓN DE CARGA
         .fromTo(
 
             "#uploadSection",

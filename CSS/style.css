@@ -10,6 +10,7 @@
 }
 
 /* VARIABLES */
+
 :root {
     --background: #080d18;
     --surface: #111a2b;
@@ -20,6 +21,7 @@
 }
 
 /* DOCUMENTO */
+
 html {
     scroll-behavior: smooth;
 }
@@ -32,54 +34,125 @@ body {
 }
 
 /* CONTENEDOR PRINCIPAL */
+
 #app {
     width: 100%;
     min-height: 100vh;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     padding: 30px 20px;
     text-align: center;
 }
 
-/* TITULO */
+/* ========================================
+   ENCABEZADO
+======================================== */
+
 h1 {
     color: var(--primary);
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: 56px;
     font-weight: 800;
     letter-spacing: 3px;
     margin-bottom: 15px;
 }
 
-/* DESCRIPCION */
-p {
-    max-width: 600px;
+#mainDescription {
+    max-width: 700px;
     color: var(--text-muted);
-    font-size: 1rem;
-    line-height: 1.7;
+    font-size: 15px;
+    line-height: 27px;
+}
+
+/* ========================================
+   ANIMALES COMPATIBLES
+======================================== */
+
+.supported-animals {
+    width: 100%;
+    max-width: 900px;
+
+    margin-top: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 145px;
+}
+
+/* ICONOS */
+
+.animal-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+
+    transform: scale(3.75);
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.animal-icon:hover {
+    color: var(--secondary);
+    transform: translateY(-5px) scale(3.95);
+}
+
+.supported-animals {
+    opacity: 0;
+}
+
+.animal-icon {
+    opacity: 0;
+    transform: translateY(30px) scale(0.5);
 }
 
 /* RESPONSIVE */
+
 @media (max-width: 600px) {
 
-    #app {
-        padding: 25px 18px;
+    .supported-animals {
+        margin-top: 25px;
+        gap: 30px;
     }
 
-    p {
-        font-size: 0.9rem;
+    .animal-icon {
+        width: 40px;
+        height: 40px;
     }
 
 }
+
+/* ACLARACIÓN */
+.supported-description {
+    max-width: 450px;
+    margin-top: -12px;
+
+    color: var(--text-muted);
+    font-size: 10px;
+    line-height: 17px;
+    opacity: 0.75;
+    text-align: center;
+}
+
 /* ========================================
    SECCIÓN DE RECONOCIMIENTO
 ======================================== */
 
 .upload-section {
-    width: min(100%, 600px);
+    width: 100%;
+    max-width: 600px;
+
     margin-top: 45px;
     padding: 30px;
+
     background: var(--surface);
     border: 1px solid #26344b;
     border-radius: 18px;
@@ -91,18 +164,23 @@ p {
 }
 
 .upload-section h2 {
-    font-size: 1.4rem;
+    font-size: 22px;
 }
 
 /* BOTÓN DE SELECCIÓN */
 
 .upload-button {
     padding: 14px 24px;
+
     background: var(--primary);
     color: #080d18;
+
+    font-size: 14px;
     font-weight: bold;
+
     border-radius: 8px;
     cursor: pointer;
+
     transition: 0.3s;
 }
 
@@ -116,6 +194,7 @@ p {
 .preview-container {
     width: 100%;
     min-height: 250px;
+
     background: #080d18;
     border: 1px dashed #40516c;
     border-radius: 12px;
@@ -123,6 +202,7 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
+
     overflow: hidden;
 }
 
@@ -135,6 +215,7 @@ p {
 #previewMessage {
     color: var(--text-muted);
     padding: 20px;
+    font-size: 14px;
 }
 
 /* BOTÓN ANALIZAR */
@@ -142,11 +223,16 @@ p {
 #analyzeButton {
     width: 100%;
     padding: 15px;
+
     background: var(--secondary);
     color: white;
+
+    font-size: 14px;
+    font-weight: bold;
+
     border: none;
     border-radius: 8px;
-    font-weight: bold;
+
     cursor: pointer;
     transition: 0.3s;
 }
@@ -158,35 +244,6 @@ p {
 
 #analyzeButton:not(:disabled):hover {
     transform: translateY(-2px);
-}
-
-/* RESULTADOS */
-
-#resultContainer {
-    width: 100%;
-    padding: 20px;
-    background: #080d18;
-    border-radius: 12px;
-    text-align: center;
-}
-
-#resultContainer h2 {
-    color: var(--primary);
-    margin-bottom: 15px;
-}
-
-/* RESPONSIVE */
-
-@media (max-width: 600px) {
-
-    .upload-section {
-        padding: 20px;
-    }
-
-    .preview-container {
-        min-height: 200px;
-    }
-
 }
 
 /* ========================================
@@ -204,7 +261,9 @@ p {
 ======================================== */
 
 #resultContainer {
-    width: min(100%, 600px);
+    width: 100%;
+    max-width: 600px;
+
     margin-top: 25px;
     padding: 30px;
 
@@ -219,13 +278,13 @@ p {
     overflow: hidden;
 }
 
-/* OCULTAR CUANDO NO HAYA RESULTADOS */
+/* OCULTAR SIN RESULTADOS */
 
 #resultContainer[hidden] {
     display: none !important;
 }
 
-/* ICONO DEL ANIMAL */
+/* ICONO */
 
 #animalIcon {
     flex-shrink: 0;
@@ -237,7 +296,7 @@ p {
     align-items: center;
     justify-content: center;
 
-    font-size: 5.5rem;
+    font-size: 88px;
 }
 
 /* CONTENIDO */
@@ -254,18 +313,18 @@ p {
 
 .result-content h2 {
     color: var(--primary);
-    font-size: 1.25rem;
+    font-size: 20px;
 }
 
 #prediction {
     color: var(--text);
-    font-size: 1rem;
+    font-size: 16px;
     font-weight: bold;
 }
 
 #confidence {
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: 14px;
 }
 
 /* BARRA DE CONFIANZA */
@@ -289,7 +348,43 @@ p {
     border-radius: inherit;
 }
 
-/* RESPONSIVE */
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 600px) {
+
+    #app {
+        padding: 25px 18px;
+    }
+
+    h1 {
+        font-size: 36px;
+    }
+
+    .supported-description {
+        font-size: 10px;
+        line-height: 15px;
+        padding: 0 5px;
+    }
+
+    .upload-section {
+        padding: 20px;
+    }
+
+    .upload-section h2 {
+        font-size: 19px;
+    }
+
+    .preview-container {
+        min-height: 200px;
+    }
+
+}
+
+/* ========================================
+   RESPONSIVE - RESULTADOS
+======================================== */
 
 @media (max-width: 480px) {
 
@@ -301,19 +396,32 @@ p {
     #animalIcon {
         width: 75px;
         height: 75px;
-        font-size: 3.5rem;
+        font-size: 56px;
     }
 
     .result-content h2 {
-        font-size: 1rem;
+        font-size: 16px;
     }
 
     #prediction {
-        font-size: 0.9rem;
+        font-size: 14px;
     }
 
     #confidence {
-        font-size: 0.8rem;
+        font-size: 13px;
     }
 
+}
+
+/* ESTADO INICIAL DE LAS ANIMACIONES GSAP */
+
+#mainTitle,
+#mainDescription,
+#supportedAnimals,
+#uploadSection {
+    opacity: 0;
+}
+
+.animal-icon {
+    opacity: 0;
 }

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="ANIMAL VISION: inteligencia artificial para reconocer gatos, perros y loros mediante imágenes.">
+    <meta name="description" content="ANIMAL VISION: inteligencia artificial especializada en reconocer gatos, perros y loros mediante imágenes.">
 
     <title>ANIMAL VISION | Reconocimiento Animal</title>
 
@@ -20,10 +20,12 @@
 
     <!-- JAVASCRIPT PRINCIPAL -->
     <script src="JS/main.js" defer></script>
+
+    <!-- ICONIFY -->
+    <script src="https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js"></script>
 </head>
 
 <body>
-    <!-- CONTENIDO PRINCIPAL -->
     <main id="app">
 
         <!-- ENCABEZADO -->
@@ -32,13 +34,39 @@
             <h1 id="mainTitle">ANIMAL VISION</h1>
 
             <p id="mainDescription">
-                Reconocimiento inteligente de animales mediante
-                inteligencia artificial.
+                Inteligencia artificial especializada en el reconocimiento
+                de gatos, perros y loros mediante imágenes.
             </p>
 
         </header>
 
-        <!-- SECCIÓN DE RECONOCIMIENTO -->
+        <!-- ANIMALES COMPATIBLES -->
+        <section class="supported-animals" id="supportedAnimals">
+
+            <iconify-icon
+                icon="boxicons:dog-alt"
+                class="animal-icon"
+                aria-label="Perro"
+                title="Perro">
+            </iconify-icon>
+
+            <iconify-icon
+                icon="boxicons:cat"
+                class="animal-icon"
+                aria-label="Gato"
+                title="Gato">
+            </iconify-icon>
+
+            <iconify-icon
+                icon="boxicons:bird"
+                class="animal-icon"
+                aria-label="Loro"
+                title="Loro">
+            </iconify-icon>
+
+        </section>
+
+
         <section class="upload-section" id="uploadSection">
 
             <h2>Analiza una imagen</h2>
@@ -58,7 +86,7 @@
 
                 <img
                     id="imagePreview"
-                    alt="Vista previa del animal"
+                    alt="Vista previa de la imagen seleccionada"
                     hidden
                 >
 
@@ -69,9 +97,13 @@
             </div>
 
             <button id="analyzeButton" disabled>
-                ANALIZAR ANIMAL
+                ANALIZAR IMAGEN
             </button>
 
+            <p class="supported-description">
+                Especializado exclusivamente en estas tres categorías.
+                Otras imágenes pueden ser clasificadas como no reconocidas.
+            </p>
         </section>
 
         <!-- TARJETA DE RESULTADOS -->
@@ -92,7 +124,8 @@
                 </div>
 
             </div>
-        </div>       
+        </div>
+
     </main>
 </body>
 </html>
