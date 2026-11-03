@@ -456,3 +456,8 @@ body {
     background-color: #050202;
     overscroll-behavior-y: none;
 }
+
+#mainTitle {
+    color: #ffffff;
+    font-weight: 600;
+}
