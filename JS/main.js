@@ -5,7 +5,7 @@
 
 // MODELO
 let animalVisionModel = null;
-
+let modelLoadingPromise = null;
 // CLASES DEL MODELO
 const clases = ["Gatos", "Perros", "Loros", "Otros"];
 
@@ -21,28 +21,50 @@ const analyzeButton = document.getElementById("analyzeButton");
 
 async function cargarModelo() {
 
-    try {
-
-        console.log("ANIMAL VISION: Iniciando sistema...");
-
-        await tf.ready();
-
-        console.log("TensorFlow.js:", tf.version.tfjs);
-
-        animalVisionModel = await tf.loadGraphModel(
-            "Model/model.json"
-        );
-
-        console.log("¡MODELO CARGADO CORRECTAMENTE!");
-        console.log("Entradas:", animalVisionModel.inputNodes);
-        console.log("Salidas:", animalVisionModel.outputNodes);
-        console.log("Forma de entrada:", animalVisionModel.inputs[0].shape);
-
-    } catch (error) {
-
-        console.error("ERROR AL CARGAR EL MODELO:", error);
-
+    // Si ya está cargado, reutilizarlo
+    if (animalVisionModel) {
+        return animalVisionModel;
     }
+
+    // Si ya se está cargando, esperar la misma carga
+    if (modelLoadingPromise) {
+        return modelLoadingPromise;
+    }
+
+    modelLoadingPromise = (async () => {
+
+        try {
+
+            console.log("ANIMAL VISION: Iniciando sistema...");
+
+            await tf.ready();
+
+            console.log("TensorFlow.js:", tf.version.tfjs);
+
+            animalVisionModel = await tf.loadGraphModel(
+                "./Model/model.json"
+            );
+
+            console.log("¡MODELO CARGADO CORRECTAMENTE!");
+            console.log("Entradas:", animalVisionModel.inputNodes);
+            console.log("Salidas:", animalVisionModel.outputNodes);
+            console.log("Forma de entrada:", animalVisionModel.inputs[0].shape);
+
+            return animalVisionModel;
+
+        } catch (error) {
+
+            console.error("ERROR AL CARGAR EL MODELO:", error);
+
+            modelLoadingPromise = null;
+
+            throw error;
+
+        }
+
+    })();
+
+    return modelLoadingPromise;
 
 }
 
@@ -108,7 +130,7 @@ async function analizarAnimal() {
 
     if (!animalVisionModel) {
 
-        console.error("El modelo todavía no está cargado.");
+        console.log("El modelo todavía está cargando.");
         return;
 
     }
@@ -437,11 +459,30 @@ function iniciarAnimaciones() {
 // INICIAR APLICACIÓN
 // ========================================
 
+// ========================================
+// INICIAR APLICACIÓN
+// ========================================
+
 async function iniciarAplicacion() {
 
-    await cargarModelo();
-
+    // Mostrar la interfaz inmediatamente
     iniciarAnimaciones();
+
+    try {
+
+        // Cargar inteligencia artificial
+        await cargarModelo();
+
+        // Preparar modelo
+        await calentarModelo();
+
+        console.log("ANIMAL VISION: Sistema listo.");
+
+    } catch (error) {
+
+        console.error("No se pudo iniciar ANIMAL VISION.");
+
+    }
 
 }
 
